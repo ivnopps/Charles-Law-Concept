@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charles's Law Simulation</title>
+
+  <!-- CONNECT CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
 <div class="app">
   <header>
     <h1>Charles’s Law Simulation</h1>
@@ -5,8 +18,10 @@
   </header>
 
   <main class="main-grid">
+
     <!-- Simulation Area -->
     <section class="simulation-card">
+
       <div class="top-bar">
         <div class="preset-buttons">
           <button class="preset" data-temp="150">Cold</button>
@@ -37,7 +52,14 @@
 
       <div class="controls">
         <label for="tempSlider">Temperature</label>
-        <input type="range" id="tempSlider" min="100" max="600" value="300" />
+
+        <input
+          type="range"
+          id="tempSlider"
+          min="100"
+          max="600"
+          value="300"
+        />
 
         <div class="button-group">
           <button id="startBtn">Start</button>
@@ -45,10 +67,12 @@
           <button id="resetBtn">Reset</button>
         </div>
       </div>
+
     </section>
 
     <!-- Info Panel -->
     <section class="info-card">
+
       <h2>Charles’s Law</h2>
 
       <div class="formula">
@@ -67,16 +91,20 @@
       </ul>
 
       <canvas id="graphCanvas"></canvas>
+
     </section>
+
   </main>
 
   <!-- Quiz Popup -->
   <div class="quiz-popup" id="quizPopup">
+
     <div class="quiz-content">
+
       <h2>Quick Quiz</h2>
+
       <p>
-        What happens to gas volume when temperature increases at constant
-        pressure?
+        What happens to gas volume when temperature increases at constant pressure?
       </p>
 
       <button class="quiz-answer correct">
@@ -88,6 +116,15 @@
       </button>
 
       <button id="closeQuiz">Close</button>
+
     </div>
+
   </div>
+
 </div>
+
+<!-- CONNECT JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>

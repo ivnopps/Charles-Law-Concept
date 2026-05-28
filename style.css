@@ -173,6 +173,15 @@ button:hover {
   text-align: center;
 }
 
+.quiz-content h2 {
+  margin-bottom: 15px;
+}
+
+.quiz-answer {
+  width: 100%;
+  margin-top: 10px;
+}
+
 .correct {
   background: #1ea55b;
 }

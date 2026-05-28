@@ -25,7 +25,6 @@ graphCanvas.width = 400;
 graphCanvas.height = 300;
 
 let animationRunning = true;
-let soundOn = true;
 
 const baseTemp = 300;
 const baseVolume = 3;
@@ -47,12 +46,10 @@ function updateSimulation() {
 
   tempValue.textContent = `${temp} K`;
 
-  // Charles's Law
   const volume = (baseVolume * temp) / baseTemp;
 
   volumeValue.textContent = `${volume.toFixed(2)} L`;
 
-  // Expand container visually
   const size = 180 + (temp - 100) * 0.25;
 
   container.style.width = `${size}px`;
@@ -62,6 +59,7 @@ function updateSimulation() {
 }
 
 function animateParticles() {
+
   if (!animationRunning) return;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,6 +68,7 @@ function animateParticles() {
   const speedMultiplier = temp / 200;
 
   particles.forEach(p => {
+
     p.x += p.vx * speedMultiplier;
     p.y += p.vy * speedMultiplier;
 
@@ -86,32 +85,24 @@ function animateParticles() {
 }
 
 function drawGraph(temp, volume) {
+
   gtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
 
-  // Axes
   gtx.strokeStyle = "#000";
+
   gtx.beginPath();
   gtx.moveTo(50, 250);
   gtx.lineTo(350, 250);
   gtx.lineTo(350, 50);
   gtx.stroke();
 
-  // Labels
-  gtx.fillStyle = "#000";
-  gtx.fillText("Temperature", 160, 280);
-  gtx.save();
-  gtx.translate(20, 180);
-  gtx.rotate(-Math.PI / 2);
-  gtx.fillText("Volume", 0, 0);
-  gtx.restore();
-
-  // Graph line
   gtx.strokeStyle = "#0077ff";
   gtx.lineWidth = 3;
 
   gtx.beginPath();
 
   for (let t = 100; t <= 600; t += 10) {
+
     let v = (baseVolume * t) / baseTemp;
 
     let x = 50 + ((t - 100) / 500) * 300;
@@ -125,15 +116,6 @@ function drawGraph(temp, volume) {
   }
 
   gtx.stroke();
-
-  // Current point
-  let currentX = 50 + ((temp - 100) / 500) * 300;
-  let currentY = 250 - (volume / 6) * 180;
-
-  gtx.beginPath();
-  gtx.arc(currentX, currentY, 6, 0, Math.PI * 2);
-  gtx.fillStyle = "red";
-  gtx.fill();
 }
 
 tempSlider.addEventListener("input", updateSimulation);
@@ -154,17 +136,12 @@ resetBtn.addEventListener("click", () => {
   animateParticles();
 });
 
-soundBtn.addEventListener("click", () => {
-  soundOn = !soundOn;
-
-  soundBtn.textContent = soundOn
-    ? "🔊 Sound"
-    : "🔇 Muted";
-});
-
 document.querySelectorAll(".preset").forEach(btn => {
+
   btn.addEventListener("click", () => {
+
     tempSlider.value = btn.dataset.temp;
+
     updateSimulation();
   });
 });
@@ -175,14 +152,6 @@ setTimeout(() => {
 
 closeQuiz.addEventListener("click", () => {
   quizPopup.style.display = "none";
-});
-
-document.querySelector(".correct").addEventListener("click", () => {
-  alert("Correct! Volume increases with temperature.");
-});
-
-document.querySelector(".wrong").addEventListener("click", () => {
-  alert("Incorrect. Try again!");
 });
 
 updateSimulation();
